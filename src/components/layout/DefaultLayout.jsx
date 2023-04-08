@@ -1,6 +1,7 @@
 import Navbar from "../Navbar/Navbar";
 
-const DefaultLayout = (Component) => {
+const DefaultLayout =
+  (Component) =>
   ({ ...props }) => {
     return (
       <div>
@@ -10,6 +11,5 @@ const DefaultLayout = (Component) => {
       </div>
     );
   };
-};
 
 export default DefaultLayout;
