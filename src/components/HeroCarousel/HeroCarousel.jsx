@@ -377,7 +377,7 @@ const HeroCarousel = () => {
             <div className="w-full h-56 md:h-80 py-3" key={image.id}>
               <img
                 src={imgDefaultPath + image.backdrop_path}
-                alt="banner"
+                alt="Banner"
                 className="w-full h-full rounded-md object-cover"
               />
             </div>
@@ -387,10 +387,10 @@ const HeroCarousel = () => {
       {/* for large screen */}
       <div className="hidden lg:block">
         <HeroSlider {...settingsLg}>
-          {images.map((images) => (
-            <div className="w-full h-96 px-2 py-3" key={images.id}>
+          {images.map((image) => (
+            <div className="w-full h-96 px-2 py-3" key={image.id}>
               <img
-                src={imgDefaultPath + images.backdrop_path}
+                src={imgDefaultPath + image.backdrop_path}
                 alt="Banner"
                 className="w-full h-full object-cover rounded-md"
               />
