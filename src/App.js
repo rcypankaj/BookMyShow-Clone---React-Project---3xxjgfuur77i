@@ -9,6 +9,7 @@ import { Route, Routes } from "react-router-dom";
 // React slick css
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import MoviePage from "./pages/MoviePage";
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3";
 axios.defaults.params = {};
@@ -18,6 +19,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="/movie/:id" element={<MoviePage />} />
     </Routes>
   );
 }

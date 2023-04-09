@@ -1,11 +1,11 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import HeroSlider from "react-slick";
 import { PrevArrow, NextArrow } from "./Arrows";
 
 const imgDefaultPath = "https://image.tmdb.org/t/p/original";
 
 const HeroCarousel = () => {
-  const [images, setImages] = useState([
+  const images = [
     {
       adult: false,
       backdrop_path: "/tQ91wWQJ2WRNDXwxuO7GCXX5VPC.jpg",
@@ -346,7 +346,7 @@ const HeroCarousel = () => {
       vote_average: 7.1,
       vote_count: 15,
     },
-  ]);
+  ];
 
   const settingsLg = {
     arrows: true,

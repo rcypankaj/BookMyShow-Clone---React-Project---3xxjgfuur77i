@@ -4,7 +4,6 @@ import Poster from "./Poster";
 
 const PosterSlider = (props) => {
   const { posters, title, subtitle, isDark, config } = props;
-  console.log(posters);
 
   const settings = {
     infinite: false,
