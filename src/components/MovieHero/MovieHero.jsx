@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { MovieContext } from "../../../context/MoiveContext";
+import { MovieContext } from "../../context/MoiveContext";
 
 import MovieInfo from "./MovieInfo";
 

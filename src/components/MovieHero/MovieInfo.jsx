@@ -1,5 +1,6 @@
 import { Fragment, useContext } from "react";
-import { MovieContext } from "../../../context/MoiveContext";
+import { MovieContext } from "../../context/MoiveContext";
+import PaymentModal from "../Payment/PaymentModal";
 
 const MovieInfo = ({ movie }) => {
   const { price, isOpen, setIsOpen, rentMovie, buyMovie } =
@@ -9,6 +10,7 @@ const MovieInfo = ({ movie }) => {
 
   return (
     <Fragment>
+      <PaymentModal price={price} isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className="flex flex-col gap-8">
         <h1 className="text-white text-5xl font-bold">
           {movie.original_title}

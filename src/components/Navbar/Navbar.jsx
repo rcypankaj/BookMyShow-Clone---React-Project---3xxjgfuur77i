@@ -64,7 +64,10 @@ const NavLg = () => {
         <span className="text-gray-200 text-base flex items-center cursor-pointer hover:text-white">
           Ghaziabad <BiChevronDown />
         </span>
-        <Link className="text-gray-200 text-base flex items-center cursor-pointer hover:text-white">
+        <Link
+          to="/plays"
+          className="text-gray-200 text-base flex items-center cursor-pointer hover:text-white"
+        >
           Plays
         </Link>
         <button className="bg-red-600 text-white px-2 py-1 text-sm rounded">
