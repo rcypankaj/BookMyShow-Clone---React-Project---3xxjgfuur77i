@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { BiChevronDown, BiMenu, BiSearch, BiShareAlt } from "react-icons/bi";
 import { MovieContext } from "../../context/MoiveContext";
+import { auth, provider } from "../../googleSignIn/config";
+import { signInWithPopup } from "firebase/auth";
 
 const NavSm = () => {
   const { movie } = useContext(MovieContext);
@@ -19,7 +21,26 @@ const NavSm = () => {
 };
 
 const NavLg = () => {
+  // const [value, setValue] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [inputMovieName, setInputMovieName] = useState();
+
+  // useEffect(() => {
+  //   setValue(localStorage.getItem("displayName"));
+  // }, [isLoggedIn]);
+
+  const handleClickLogin = () => {
+    signInWithPopup(auth, provider).then((data) => {
+      localStorage.setItem("displayName", data.user.displayName);
+      setIsLoggedIn(true);
+    });
+  };
+
+  const handleClickLogout = () => {
+    localStorage.clear();
+    window.location.reload();
+    setIsLoggedIn(false);
+  };
 
   const inputNameHandler = (e) => {
     setInputMovieName(e.target.value);
@@ -53,9 +74,22 @@ const NavLg = () => {
         <span className="text-gray-200 text-base flex items-center cursor-pointer hover:text-white">
           Ghaziabad <BiChevronDown />
         </span>
-        <button className="bg-red-600 text-white px-2 py-1 text-sm rounded">
-          Sign In
-        </button>
+        {!isLoggedIn && (
+          <button
+            className="bg-red-600 text-white px-2 py-1 text-sm rounded"
+            onClick={handleClickLogin}
+          >
+            Sign In
+          </button>
+        )}
+        {isLoggedIn && (
+          <button
+            className="bg-red-600 text-white px-2 py-1 text-sm rounded"
+            onClick={handleClickLogout}
+          >
+            Logout
+          </button>
+        )}
         <div className="w-8 h-8 text-white">
           <BiMenu className="w-full h-full" />
         </div>

@@ -15,11 +15,19 @@ const MovieProvider = ({ children }) => {
   const [price, setPrice] = useState(0);
 
   const rentMovie = () => {
+    if (!localStorage.getItem("displayName")) {
+      alert("Please login before proceed!");
+      return;
+    }
     setIsOpen(true);
     setPrice(149);
   };
 
   const buyMovie = () => {
+    if (!localStorage.getItem("displayName")) {
+      alert("Please login before proceed!");
+      return;
+    }
     setIsOpen(true);
     setPrice(599);
   };

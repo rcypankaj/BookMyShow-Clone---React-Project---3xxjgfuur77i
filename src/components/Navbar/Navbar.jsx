@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BiChevronDown, BiMenu, BiSearch } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { auth, provider } from "../../googleSignIn/config";
@@ -22,17 +22,11 @@ const NavSm = () => {
 };
 
 const NavMd = () => {
-  const [value, setValue] = useState();
-  const inputNameHandler = () => {
-    signInWithPopup(auth, provider).then((data) => {
-      localStorage.setItem("displayName", data.user.displayName);
-    });
-  };
+  const [inputMovieName, setInputMovieName] = useState();
 
-  useEffect(() => {
-    setValue(localStorage.getItem("displayName"));
-    console.log(localStorage.getItem("displayName"));
-  }, [value]);
+  const inputNameHandler = (e) => {
+    setInputMovieName(e.target.value);
+  };
   return (
     <div className="flex items-center w-full gap-3">
       <div className="w-10 h-10">
@@ -52,7 +46,7 @@ const NavMd = () => {
           placeholder="Search for movies, events, plays, sports and activities"
           onChange={inputNameHandler}
         />
-        <Link to="/filterMovie" state={value}>
+        <Link to="/filterMovie" state={inputMovieName}>
           Search
         </Link>
       </div>
@@ -61,18 +55,30 @@ const NavMd = () => {
 };
 
 const NavLg = () => {
-  const [value, setValue] = useState();
-  const inputNameHandler = () => {
+  // const [value, setValue] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [inputMovieName, setInputMovieName] = useState();
+
+  // useEffect(() => {
+  //   setValue(localStorage.getItem("displayName"));
+  // }, [isLoggedIn]);
+
+  const handleClickLogin = () => {
     signInWithPopup(auth, provider).then((data) => {
       localStorage.setItem("displayName", data.user.displayName);
+      setIsLoggedIn(true);
     });
   };
 
-  useEffect(() => {
-    setValue(localStorage.getItem("displayName"));
-    console.log(localStorage.getItem("displayName"));
-  }, [value]);
+  const handleClickLogout = () => {
+    localStorage.clear();
+    window.location.reload();
+    setIsLoggedIn(false);
+  };
 
+  const inputNameHandler = (e) => {
+    setInputMovieName(e.target.value);
+  };
   return (
     <div className="container flex mx-auto px-4 items-center justify-between">
       <div className="flex items-center w-1/2 gap-3">
@@ -93,7 +99,7 @@ const NavLg = () => {
             onChange={inputNameHandler}
             placeholder="Search for movies, events, plays, sports and activities"
           />
-          <Link to="/filterMovie" state={value}>
+          <Link to="/filterMovie" state={inputMovieName}>
             Search
           </Link>
         </div>
@@ -108,9 +114,22 @@ const NavLg = () => {
         >
           Plays
         </Link>
-        <button className="bg-red-600 text-white px-2 py-1 text-sm rounded">
-          Sign In
-        </button>
+        {!isLoggedIn && (
+          <button
+            className="bg-red-600 text-white px-2 py-1 text-sm rounded"
+            onClick={handleClickLogin}
+          >
+            Sign In
+          </button>
+        )}
+        {isLoggedIn && (
+          <button
+            className="bg-red-600 text-white px-2 py-1 text-sm rounded"
+            onClick={handleClickLogout}
+          >
+            Logout
+          </button>
+        )}
         <div className="w-8 h-8 text-white">
           <BiMenu className="w-full h-full" />
         </div>
