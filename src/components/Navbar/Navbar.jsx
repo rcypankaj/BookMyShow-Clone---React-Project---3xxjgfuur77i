@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BiChevronDown, BiMenu, BiSearch } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { auth, provider } from "../../googleSignIn/config";
@@ -59,9 +59,12 @@ const NavLg = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [inputMovieName, setInputMovieName] = useState();
 
-  // useEffect(() => {
-  //   setValue(localStorage.getItem("displayName"));
-  // }, [isLoggedIn]);
+  useEffect(() => {
+    // setValue(localStorage.getItem("displayName"));
+    if (localStorage.getItem("displayName")) {
+      setIsLoggedIn(true);
+    }
+  }, [isLoggedIn]);
 
   const handleClickLogin = () => {
     signInWithPopup(auth, provider).then((data) => {
