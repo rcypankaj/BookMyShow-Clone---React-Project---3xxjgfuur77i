@@ -12,7 +12,6 @@ import { Route, Routes } from "react-router-dom";
 // React slick css
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import SignIn from "./googleSignIn/SignIn";
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3";
 axios.defaults.params = {};
